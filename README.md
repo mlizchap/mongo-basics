@@ -10,6 +10,7 @@
 [Deleting an Item in the DB](#deleting-items-in-the-db)<br />
 [Updating the Item in the DB](#updating-items-in-the-db)<br />
 [Validation](#validation)<br />
+[Associations](#associations)<br />
 
 ## Getting started 
 - clone the repo
@@ -246,8 +247,6 @@
     ```
 
 ## Validation 
-- a project that creates a user database and makes sure the user enters valid information.
-
 - setup
     - in `user.js`: create the schema and export the module.
         ```javascript
@@ -329,7 +328,7 @@
         })
     ```
 
-## Associations <span id="associations></span>
+## Associations <span id="associations"></span>
 
 ### embedded vs reference
     - Embedded is better for documents with a numerical limit (nested documents have a limit of 16MB)
