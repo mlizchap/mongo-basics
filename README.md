@@ -1,4 +1,4 @@
-# mongo-crud
+# Mongo Basics
 - a small database that has basic CRUD functionality and uses mongo/mongoose and mocha for testing
 
 ## Examples 
