@@ -7,15 +7,15 @@
 [Mongo Associations (Movie Review App)](https://github.com/mlizchap/movie-review-app)<br />
 
 ## TOC
-[Setup](#setup)<br />
-[Creating the model](#create-the-model)<br />
-[Creating the Connection](#create-the-test-connection)<br />
-[Creating a DB item](#create-and-test-an-item-to-the-db)<br />
-[Finding an Item in the DB](#find-an-item-in-the-db)<br />
-[Deleting an Item in the DB](#deleting-items-in-the-db)<br />
-[Updating the Item in the DB](#updating-items-in-the-db)<br />
-[Validation](#validation)<br />
-[Associations](#associations)<br />
+- [Setup](#setup)
+- [Creating the model](#create-the-model)
+- [Creating the Connection](#create-the-test-connection)
+- [Creating a DB item](#create-and-test-an-item-to-the-db)
+- [Finding an Item in the DB](#find-an-item-in-the-db)
+- [Deleting an Item in the DB](#deleting-items-in-the-db)
+- [Updating the Item in the DB](#updating-items-in-the-db)
+- [Validation](#validation)
+- [Associations](#associations)
 
 ## Setup
 - create the script to run the test
