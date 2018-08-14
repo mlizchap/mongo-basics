@@ -1,6 +1,11 @@
 # mongo-crud
 - a small database that has basic CRUD functionality and uses mongo/mongoose and mocha for testing
 
+## Examples 
+[Basic Mongo Crud (Mongo Book DB)](https://github.com/mlizchap/mongo-book-db)
+[Mongo Validation (User Validation App)](https://github.com/mlizchap/user-validation-app)
+[Mongo Associations (Movie Review App](https://github.com/mlizchap/movie-review-app)
+
 [Getting Started](#getting-started)<br />
 [Setup](#setup)<br />
 [Creating the model](#create-the-model)<br />
