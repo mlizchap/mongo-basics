@@ -246,7 +246,7 @@
         })
     ```
 
-## Validation <span id="validation"></span>
+## Validation<span id="validation"></span>
 - setup
     - in `user.js`: create the schema and export the module.
         ```javascript
@@ -328,7 +328,7 @@
         })
     ```
 
-## Associations <span id="associations"></span>
+## Associations<span id="associations"></span>
 
 ### embedded vs reference
     - Embedded is better for documents with a numerical limit (nested documents have a limit of 16MB)
