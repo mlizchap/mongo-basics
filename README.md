@@ -4,8 +4,9 @@
 ## Examples 
 [Basic Mongo Crud (Mongo Book DB)](https://github.com/mlizchap/mongo-book-db)<br />
 [Mongo Validation (User Validation App)](https://github.com/mlizchap/user-validation-app)<br />
-[Mongo Associations (Movie Review App](https://github.com/mlizchap/movie-review-app)<br />
+[Mongo Associations (Movie Review App)](https://github.com/mlizchap/movie-review-app)<br />
 
+## TOC
 [Getting Started](#getting-started)<br />
 [Setup](#setup)<br />
 [Creating the model](#create-the-model)<br />
