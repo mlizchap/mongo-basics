@@ -245,7 +245,7 @@
         })
     ```
 
-## mongo-validation 
+## Validation 
 - a project that creates a user database and makes sure the user enters valid information.
 
 - setup
@@ -290,7 +290,7 @@
         },
     ```
 
-### Validation Testing
+### Validation Testing <span id="validation"></span>
 - test to make sure value exists if required
     ```javascript
         it('requires a user name', () => {
