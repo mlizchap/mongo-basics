@@ -328,3 +328,218 @@
                 })
         })
     ```
+
+## Associations <span id="associations></span>
+
+### embedded vs reference
+    - Embedded is better for documents with a numerical limit (nested documents have a limit of 16MB)
+    - In nested documents, the child docs are deleted when the parent is deleted 
+    - referenced docs are easier for querying outside of the parent 
+    
+### models (do not need to make for nested docs)
+```javascript
+
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+// .. schema goes here
+
+const Review = mongoose.model('review', ReviewSchema);
+
+module.exports = Review;
+```
+
+### schemas (need for both subdocs and associations)
+```javascript
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const ReviewSchema = new Schema({
+    title: String,
+    content: String,
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'comment'
+    }]
+})
+```
+
+```javascript
+const CommentSchema = new Schema({
+    content: String,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    }
+})
+```
+
+```javascript
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const MovieSchema = new Schema({
+    title: String
+})
+
+module.exports = MovieSchema;
+```
+```javascript
+const UserSchema = new Schema({
+    name: {
+        type: String
+    },
+    movies: [MovieSchema],
+    reviews: [{
+        type: Schema.Types.ObjectId,
+        ref: 'review'
+    }]
+})
+```
+
+### middleware 
+
+    - **virtual types**: do not actually go to the database 
+    ```java
+    UserSchema.virtual('movieCount').get(function() {
+        // this keyword will refer to the instance of the model we're working on
+        return this.movies.length;
+    })
+    ```
+
+    - `.pre()`: removes a parent's child data when the parent is deleted
+        ```java
+        // removes a user's reviews when that user is deleted from the db 
+        UserSchema.pre('remove', function(next) {
+            const Review = mongoose.model('review');
+            // this.review ==== an array of an instance's reviews, $in: if the ID is in the array, the review is removed 
+            Review.remove({_id: { $in: this.reviews }})
+                .then(() => next());
+        })
+        ```
+
+### tests 
+
+- test helper
+    ```java
+        const mongoose = require('mongoose');
+        mongoose.Promise = global.Promise;
+
+        before((done) => {
+            mongoose.connect('mongodb://localhost/movies_test');
+            mongoose.connection
+                .once('open', () =>  done() )
+                .on('error', () => (error) => {
+                    console.warn('Warning', error);
+                })
+        })
+
+        beforeEach((done) => {
+            const { users, reviews, comments } = mongoose.connection.collections;
+            users.drop(() => {
+                comments.drop(() => {
+                    reviews.drop(() => {
+                        done();
+                    })
+                })
+            })
+        })
+    ```
+
+    - create tests
+    ```java
+    const assert = require('assert');
+    const User = require('../src/user');
+
+    describe('Creating records', () => {
+        it('saves a user', (done) => {
+            const jane = new User({ name: 'Jane' })
+
+            jane.save()
+                .then(() => {
+                    assert(!jane.isNew);
+                    done();
+                })
+        })
+    })
+    ```
+
+    - subdoc tests
+    ```java
+    const assert = require('assert');
+    const User = require('../src/user');
+
+    describe('Subdocuments', (done) => {
+        it('can create a sub document', (done) => {
+            const jane = new User({
+                name: 'Jane',
+                movies: [{ title: 'Titanic' }]
+            });
+
+            jane.save()
+                .then(() =>User.findOne({ name: 'Jane' }))
+                .then((user) => {
+                    assert(user.movies[0].title === 'Titanic');
+                    done();
+                })
+        })
+
+        it('can add subdocs to an existing record', (done) => {
+            const jane = new User({
+                name: 'Jane',
+                movies: []
+            })
+            jane.save() 
+                .then(() => User.findOne({ name: 'Jane'}))
+                .then((user) => {
+                    user.movies.push({ title: 'Titanic' })
+                    return user.save();
+                })
+                .then(() => User.findOne({ name: 'Jane' }))
+                .then((user) => {
+                    assert(user.movies[0].title === 'Titanic')
+                    done()
+                })
+        })
+
+        it('can remove an existing document', (done) => {
+            const jane = new User({
+                name: 'Jane',
+                movies: [{ title: 'Titanic' }]
+            })
+            jane.save()
+                .then(() => User.findOne({ name: 'Jane' }))
+                .then((user) => {
+                    user.movies[0].remove();
+                    return user.save();
+                })
+                .then(() => User.findOne({ name: 'Jane' }))
+                    .then((user) => {
+                        assert(user.movies.length === 0);
+                        done();
+                    })
+        })
+    })
+    ```
+
+    - middleware tests
+    ```java
+    const assert = require('assert');
+    const User = require('../src/user');
+
+    describe('Virtual types', () => {
+        it('movieCount returns the number of reviews', (done) => {
+            const jane = new User({
+                name: 'Jane',
+                movies: [{ title: 'Toy Story Review'}]
+            })
+
+            jane.save() 
+                .then(() => User.findOne({ name: 'Jane' }))
+                .then((user) => {
+                    assert(user.movies.length === 1);
+                    done();
+                })
+        })
+    })
+    ```
