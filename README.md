@@ -2,9 +2,9 @@
 - a small database that has basic CRUD functionality and uses mongo/mongoose and mocha for testing
 
 ## Examples 
-[Basic Mongo Crud (Mongo Book DB)](https://github.com/mlizchap/mongo-book-db)
-[Mongo Validation (User Validation App)](https://github.com/mlizchap/user-validation-app)
-[Mongo Associations (Movie Review App](https://github.com/mlizchap/movie-review-app)
+[Basic Mongo Crud (Mongo Book DB)](https://github.com/mlizchap/mongo-book-db)<br />
+[Mongo Validation (User Validation App)](https://github.com/mlizchap/user-validation-app)<br />
+[Mongo Associations (Movie Review App](https://github.com/mlizchap/movie-review-app)<br />
 
 [Getting Started](#getting-started)<br />
 [Setup](#setup)<br />
