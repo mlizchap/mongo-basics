@@ -246,7 +246,7 @@
         })
     ```
 
-## Validation 
+## Validation <span id="validation"></span>
 - setup
     - in `user.js`: create the schema and export the module.
         ```javascript
@@ -289,7 +289,7 @@
         },
     ```
 
-### Validation Testing <span id="validation"></span>
+### Validation Testing 
 - test to make sure value exists if required
     ```javascript
         it('requires a user name', () => {
