@@ -7,7 +7,6 @@
 [Mongo Associations (Movie Review App)](https://github.com/mlizchap/movie-review-app)<br />
 
 ## TOC
-[Getting Started](#getting-started)<br />
 [Setup](#setup)<br />
 [Creating the model](#create-the-model)<br />
 [Creating the Connection](#create-the-test-connection)<br />
@@ -17,11 +16,6 @@
 [Updating the Item in the DB](#updating-items-in-the-db)<br />
 [Validation](#validation)<br />
 [Associations](#associations)<br />
-
-## Getting started 
-- clone the repo
-- install the node modules
-- `$ npm run test`
 
 ## Setup
 - create the script to run the test
