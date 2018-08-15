@@ -398,7 +398,7 @@ const UserSchema = new Schema({
 
 ### middleware 
 
-    - **virtual types**: do not actually go to the database 
+- **virtual types**: do not actually go to the database 
     ```java
     UserSchema.virtual('movieCount').get(function() {
         // this keyword will refer to the instance of the model we're working on
@@ -406,7 +406,7 @@ const UserSchema = new Schema({
     })
     ```
 
-    - `.pre()`: removes a parent's child data when the parent is deleted
+- `.pre()`: removes a parent's child data when the parent is deleted
         ```java
         // removes a user's reviews when that user is deleted from the db 
         UserSchema.pre('remove', function(next) {
@@ -445,7 +445,7 @@ const UserSchema = new Schema({
         })
     ```
 
-    - create tests
+ - create tests
     ```java
     const assert = require('assert');
     const User = require('../src/user');
@@ -463,7 +463,7 @@ const UserSchema = new Schema({
     })
     ```
 
-    - subdoc tests
+- subdoc tests
     ```java
     const assert = require('assert');
     const User = require('../src/user');
@@ -521,7 +521,8 @@ const UserSchema = new Schema({
     })
     ```
 
-    - middleware tests
+
+- middleware tests
     ```java
     const assert = require('assert');
     const User = require('../src/user');
